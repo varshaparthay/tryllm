@@ -8,28 +8,30 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 
 # Read the CSV file and load it into a DataFrame
-df = pd.read_csv('/Users/varshaparthasarathy/Downloads/random_data.csv')
+df = pd.read_csv("/Users/varshaparthasarathy/Downloads/random_data.csv")
 
 # Continue with the rest of your code...
-le=LabelEncoder()
-df['description']=le.fit_transform(df['description'])
-df['name']=le.fit_transform(df['name'])
+le = LabelEncoder()
+df["description"] = le.fit_transform(df["description"])
+df["name"] = le.fit_transform(df["name"])
 
-df['visit_type'] = df['visit_type'].astype(str)
-df['visit_type']=le.fit_transform(df['visit_type'])
+df["visit_type"] = df["visit_type"].astype(str)
+df["visit_type"] = le.fit_transform(df["visit_type"])
 
-df['hsa_fsa_eligibility']=le.fit_transform(df['hsa_fsa_eligibility'])
+df["hsa_fsa_eligibility"] = le.fit_transform(df["hsa_fsa_eligibility"])
 
-df 
+df
 # Extract the features and target variable
 X = df.iloc[:, :-1]
-y = df['hsa_fsa_eligibility']
+y = df["hsa_fsa_eligibility"]
 
 # print("Features:", X)
 # print("Target variable:", y)
 
 # Split the dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7, random_state=100)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, train_size=0.7, random_state=100
+)
 
 # Create a decision tree classifier
 clf = DecisionTreeClassifier()
@@ -47,8 +49,8 @@ print("Accuracy:", accuracy)
 
 # Calculate the recall score
 recall = recall_score(y_test, y_pred, average=None)
+print("Recall:", recall)
 
 # Calculate the precision score
 precision = precision_score(y_test, y_pred, average=None)
 print("Precision:", precision)
-print("Recall:", recall)
